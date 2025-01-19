@@ -1,0 +1,29 @@
+@inherits LayoutComponentBase
+@inject UserSessionService UserSessionService
+
+<PageTitle>EventEase</PageTitle>
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    @if (UserSessionService.IsLoggedIn)
+    {
+        <p>Welcome, @UserSessionService.UserName!</p>
+        <button @onclick="Logout">Logout</button>
+    }
+    else
+    {
+        <p>You are not logged in.</p>
+        <NavLink href="/login">Login</NavLink>
+    }
+    @Body
+</div>
+
+@code {
+    private void Logout()
+    {
+        UserSessionService.Logout();
+    }
+}
