@@ -1,0 +1,26 @@
+@page "/events"
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<Virtualize Items="events" Context="eventItem">
+    <ItemContent>
+        <EventCard EventName="@eventItem.Name" EventDate="@eventItem.Date" EventLocation="@eventItem.Location" />
+    </ItemContent>
+</Virtualize>
+
+@code {
+    private List<EventModel> events = new List<EventModel>
+    {
+        // Populate with mock data
+        new EventModel { Name = "Corporate Meetup", Date = DateTime.Now.AddDays(10), Location = "New York" },
+        new EventModel { Name = "Social Gathering", Date = DateTime.Now.AddDays(20), Location = "Los Angeles" }
+    };
+
+    protected override void OnInitialized()
+    {
+        // Simulate a large dataset
+        for (int i = 0; i < 1000; i++)
+        {
+            events.Add(new EventModel { Name = $"Event {i + 1}", Date = DateTime.Now.AddDays(i), Location = $"Location {i + 1}" });
+        }
+    }
+}
