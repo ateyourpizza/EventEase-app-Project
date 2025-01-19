@@ -1,0 +1,16 @@
+<div class="event-card">
+    <h3>@(string.IsNullOrEmpty(EventName) ? "Unnamed Event" : EventName)</h3>
+    <p>Date: @(EventDate == DateTime.MinValue ? "Date not set" : EventDate.ToString("MMMM dd, yyyy"))</p>
+    <p>Location: @(string.IsNullOrEmpty(EventLocation) ? "Location not specified" : EventLocation)</p>
+</div>
+
+@code {
+    [Parameter]
+    public string EventName { get; set; }
+
+    [Parameter]
+    public DateTime EventDate { get; set; } = DateTime.MinValue;
+
+    [Parameter]
+    public string EventLocation { get; set; }
+}
